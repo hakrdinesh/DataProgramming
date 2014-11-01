@@ -1,0 +1,9 @@
+Notes:
+
+Hadoop Mode Enabled
+
+Alphabetically Sorted List
+$ ./WordCount.py | sort -k1,1 | ./Reducer.py 
+
+Numerical Sorted List
+$ ./WordCount.py | sort -k1,1 | ./Reducer.py | sort -n -r -k4,4
