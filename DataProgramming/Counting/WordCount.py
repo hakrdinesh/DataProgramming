@@ -2,14 +2,15 @@
 # pdf to ascii conversion
 import os
 import sys
+import string
 
 debug = True
 
 # application properties
 testing 	= True
-alwaysExtract 	= False
 outdir 		= "output"
-hadoop 		= False
+hadoop 		= True
+hadooplimit	= 0
 printwords 	= False
 pagermode 	= False
 stopCommonWords = True
@@ -36,7 +37,7 @@ def GetPathNames(indir, suffix):
 				pathname = dir + "/" + f
 				print(suffix, "Path     + ", pathname, file=sys.stderr)
 				pathnames.append(pathname)
-	print("DEBUG:", suffix, "Pathnames", pathnames)
+	print("DEBUG:", suffix, "Pathnames", pathnames, file=sys.stderr)
 	return pathnames
 
 if (testing):
@@ -118,12 +119,12 @@ def WordIsInsignificant(w):
 	# skip single character words
 	if (w == "?" or w == "." or w == "-"):
 		if (debug):
-			print("DEBUG: WordIsInsignificant", w, "True")
+			print("DEBUG: WordIsInsignificant", w, "True", file=sys.stderr)
 		return True
 	# skip empty word i.e. string of zero length
 	if (w == ""):
 		if (debug):
-			print("DEBUG: WordIsEmpty", w, "True")
+			print("DEBUG: WordIsEmpty", w, "True", file=sys.stderr)
 		return True
 	return False
 
@@ -193,6 +194,16 @@ def GenerateStopWordsDictionary():
 			stopwords[sw] = 1
 
 # End of GenerateStopWordsDictionary
+
+def WordIsStopWord(w):
+	global stopwords
+	return w in stopwords
+
+def WordStartsWithDigit(w):
+	return (len(w) > 0) and (w[0].isdigit())
+
+def WordStartsWithPunctuation(w):
+	return (len(w) > 0) and (w[0] in string.punctuation)
 
 def PrintImportantWordsByDecreasingFrequency(fname, ufl, words, swdict):
 	oname 	= GetOutputFileName(fname, ".out.frequency")
@@ -266,6 +277,7 @@ def WordCount(filename):
 	# dictionary of words
 	words = {}
 	new_words_shown = 0
+	nhadoop = 0
 
 	for line in f:
 		# print (line)
@@ -293,9 +305,29 @@ def WordCount(filename):
 				# skip it, continue on to the next word
 				continue
 
+			# skip words starting with numbers
+			if WordStartsWithDigit(w):
+				# skip it, continue on to the next word
+				continue
+
+			# skip words starting with punctuation
+			if WordStartsWithPunctuation(w):
+				# skip it, continue on to the next word
+				continue
+
+			# skip stop words
+			if stopCommonWords and WordIsStopWord(w):
+				# skip it, continue on to the next word
+				continue
+
 			# for hadoop, just print that we have seen this word
 			if (hadoop):
-				print ("(", w, ",", 1, ")")
+				if (hadooplimit > 0):
+					nhadoop += 1
+				print ( "{0}\t{1}".format(w, 1) )
+				if (hadooplimit > 0):
+					if (nhadoop == hadooplimit):
+						return
 				continue;
 
 			# assert: not in hadoop mode
@@ -322,7 +354,6 @@ def WordCount(filename):
 	PrintAllWordsAndTheirCounts(words)
 
 	# generate a list of common words and put them into a dictionary
-	GenerateStopWordsDictionary()
 
 	# compiles of list of unique frequencies
 	# if we see frequencies like: 34, 34, 300, 1, 1, 1
@@ -341,9 +372,12 @@ def WordCount(filename):
 
 # end of WordCount
 
+GenerateStopWordsDictionary()
 for f in array:
 	filename = f
-	print(filename)
+	print(filename, file=sys.stderr)
+	if not (filename == "Books/ssr.txt"):
+		continue
 	WordCount(filename)
 
 exit(0)
