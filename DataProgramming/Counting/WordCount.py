@@ -9,7 +9,8 @@ debug = True
 # application properties
 testing 	= True
 outdir 		= "output"
-hadoop 		= True
+single		= False
+hadoop 		= False
 hadooplimit	= 0
 printwords 	= False
 pagermode 	= False
@@ -30,14 +31,18 @@ def GetPathNames(indir, suffix):
 			print("Subdirectories", subdirs, file=sys.stderr)
 			print("Files         ", files, file=sys.stderr)
 		for d in subdirs:
-			print("Subdirectory  ", d, file=sys.stderr)
+			if (debug):
+				print("Subdirectory  ", d, file=sys.stderr)
 		for f in files:
 			if f.lower().endswith(suffix):
-				print(suffix, "File     + ", f, file=sys.stderr)
+				if (debug):
+					print(suffix, "File     + ", f, file=sys.stderr)
 				pathname = dir + "/" + f
-				print(suffix, "Path     + ", pathname, file=sys.stderr)
+				if (debug):
+					print(suffix, "Path     + ", pathname, file=sys.stderr)
 				pathnames.append(pathname)
-	print("DEBUG:", suffix, "Pathnames", pathnames, file=sys.stderr)
+	if (debug):
+		print("DEBUG:", suffix, "Pathnames", pathnames, file=sys.stderr)
 	return pathnames
 
 if (testing):
@@ -138,9 +143,6 @@ def PrintAllWordsAndTheirCounts(dict):
 		if (debug):
 			print ("(", key, ",", value, ")")
 
-	if (debug):
-		exit(1)
-
 # End Of PrintAllWordsAndTheirCounts
 
 def GenerateUniqueFrequencyList(words):
@@ -179,6 +181,7 @@ def GenerateStopWordsDictionary():
 	stopstring += 	" will many only"
 	stopstring += 	" were i my them had me"
 	stopstring += 	" text synonyms translation purport"
+	stopstring += 	" one all may"
 
 	# convert them to all lower case
 	# trim leading and trailing whitespace
@@ -204,6 +207,13 @@ def WordStartsWithDigit(w):
 
 def WordStartsWithPunctuation(w):
 	return (len(w) > 0) and (w[0] in string.punctuation)
+
+def WordsIsLongEnough(w):
+	if (minwordlen <= 0):
+		# this check has been disabled by user, so return true always
+		return True
+	# assert: minwordlen > 0
+	return (len(w) >= minwordlen)
 
 def PrintImportantWordsByDecreasingFrequency(fname, ufl, words, swdict):
 	oname 	= GetOutputFileName(fname, ".out.frequency")
@@ -305,6 +315,11 @@ def WordCount(filename):
 				# skip it, continue on to the next word
 				continue
 
+			# skip very short words i.e. len < minwordlen
+			if not WordsIsLongEnough(w):
+				# skip it, continue on to the next word
+				continue
+
 			# skip words starting with numbers
 			if WordStartsWithDigit(w):
 				# skip it, continue on to the next word
@@ -348,7 +363,7 @@ def WordCount(filename):
 
 	# no further processing for hadoop style program
 	if (hadoop):
-		exit(0)
+		return
 
 	# print all words and their frequencies (we call it counts)
 	PrintAllWordsAndTheirCounts(words)
@@ -376,8 +391,12 @@ GenerateStopWordsDictionary()
 for f in array:
 	filename = f
 	print(filename, file=sys.stderr)
-	if not (filename == "Books/ssr.txt"):
-		continue
+	# process only 1 file i.e. singlemode
+	if (single):
+		# skip if not ssr.txt, favourite book to read
+		if not (filename == "Books/ssr.txt"):
+			continue
+		# process only ssr.txt
 	WordCount(filename)
 
 exit(0)

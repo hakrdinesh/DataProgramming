@@ -6,7 +6,6 @@ import PyPDF2
 
 debug		= True
 testing 	= True
-alwaysExtract 	= False
 
 
 outdir = "output"

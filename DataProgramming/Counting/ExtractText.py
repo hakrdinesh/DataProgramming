@@ -117,8 +117,34 @@ def ExtractText(filename):
 		except:
 			print("Warning: Failed to Extracted Text from Page", p, "of", npages, "from", iname, "to", oname, file=sys.stderr)
 
+def FileIsToBeRejected(filename):
+	if "letters_from_srila" in filename.lower():
+		return True
+	if "sb-canto" in filename.lower():
+		return True
+	if "kunti" in filename.lower():
+		return True
+	if "the-nectar-of-instruction" in filename.lower():
+		return True
+	if "transcendental_teachings" in filename.lower():
+		return True
+	if "the_krishna_consciousness_handbook" in filename.lower():
+		return True
+	if "prospectus" in filename.lower():
+		return True
+	if "on_chanting" in filename.lower():
+		return True
+	if "easy_journy" in filename.lower():
+		return True
+	if filename.lower().startswith("sb-"):
+		return True
+	return False
+
 array = GetPDFPathNames(indir)
 for f in array:
 	print(f)
+	if (FileIsToBeRejected(f)):
+		print("DEBUG: Skipping Reject File", f, file=sys.stderr)
+		continue
 	ExtractText(f)
 exit(0)
