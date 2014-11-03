@@ -56,7 +56,7 @@ array = GetPathNames(outpath, ".txt")
 
 def GetOutputFileName(inputfilename, suffix = ".out"):
 	if (debug):
-		outfilename = filename.lower().replace(".txt", suffix)
+		outfilename = filename.replace(".txt", suffix)
 		print("Input File  is", filename)
 		print("Output File is", outfilename)
 	return outfilename

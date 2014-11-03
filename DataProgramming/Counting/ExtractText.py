@@ -6,7 +6,7 @@ import PyPDF2
 
 debug		= True
 testing 	= True
-alwaysExtract 	= False
+alwaysExtract 	= True
 
 outdir 		= "output"
 suffix 		= ".pdf"
@@ -43,7 +43,7 @@ def GetPDFPathNames(indir):
 def GetOutputFileName(inpath):
 	components = inpath.strip().split("/")
 	inlast = components.pop()
-	outlast = inlast.lower().replace(".pdf", ".utf8")
+	outlast = inlast.replace(".pdf", ".utf8")
 	if not testing:
 		components.append(outdir)
 	components.append(outlast)

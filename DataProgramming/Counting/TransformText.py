@@ -44,7 +44,7 @@ array = GetPathNames(outpath, ".utf8")
 
 def GetOutputFileName(inputfilename):
 	if (debug):
-		outfilename = filename.lower().replace(".utf8", ".txt")
+		outfilename = filename.replace(".utf8", ".txt")
 		print("Input File  is", filename)
 		print("Output File is", outfilename)
 	return outfilename
