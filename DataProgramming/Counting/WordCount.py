@@ -1,16 +1,18 @@
-#!/C/Python34/python.exe
-# pdf to ascii conversion
+#!/C/Python27/python.exe
+# word counter
+from __future__ import print_function
+
 import os
 import sys
 import string
 
-debug = True
+debug = False
 
 # application properties
 testing 	= True
 outdir 		= "output"
-single		= False
-hadoop 		= False
+single		= True
+hadoop 		= True
 hadooplimit	= 0
 printwords 	= False
 pagermode 	= False
@@ -55,8 +57,8 @@ array = GetPathNames(outpath, ".txt")
 
 
 def GetOutputFileName(inputfilename, suffix = ".out"):
+	outfilename = filename.replace(".txt", suffix)
 	if (debug):
-		outfilename = filename.replace(".txt", suffix)
 		print("Input File  is", filename)
 		print("Output File is", outfilename)
 	return outfilename
@@ -217,6 +219,7 @@ def WordsIsLongEnough(w):
 
 def PrintImportantWordsByDecreasingFrequency(fname, ufl, words, swdict):
 	oname 	= GetOutputFileName(fname, ".out.frequency")
+	print("Generating output file ...", oname, file=sys.stderr)
 	ofile 	= GetOutputStream(oname)
 	# print frequencies of words in reducing frequency order
 	print("In file ", fname, " the important words ( length >=", minwordlen, ") (by frequency) are:", file=ofile)
@@ -238,6 +241,7 @@ def PrintImportantWordsByDecreasingFrequency(fname, ufl, words, swdict):
 
 def PrintImportantWordsByAlphabeticOrder(fname, dict):
 	oname 	= GetOutputFileName(filename, ".out.alphabetic")
+	print("Generating output file ...", oname, file=sys.stderr)
 	ofile 	= GetOutputStream(oname)
 	print("In file ", fname, " the important words (length >=", minwordlen, ") (alphabetically) are:", file=ofile)
 
@@ -390,13 +394,15 @@ def WordCount(filename):
 GenerateStopWordsDictionary()
 for f in array:
 	filename = f
-	print(filename, file=sys.stderr)
 	# process only 1 file i.e. singlemode
 	if (single):
 		# skip if not ssr.txt, favourite book to read
 		if not (filename == "Books/ssr.txt"):
+			if debug:
+				print("Skipping file", filename, file=sys.stderr)
 			continue
 		# process only ssr.txt
+	print("Processing", filename, file=sys.stderr)
 	WordCount(filename)
 
 exit(0)

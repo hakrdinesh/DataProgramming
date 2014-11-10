@@ -1,4 +1,5 @@
-#!/C/Python34/python.exe
+#!/C/Python27/python.exe
+from __future__ import print_function
 
 import sys
 
@@ -21,7 +22,7 @@ for line in f:
 		# split line into newly seen newword, newoccurence
 		(nw, nc) = l.split("\t")
 		if (debug):
-			print( nw, "=", nc, flush=True )
+			print( nw, "=", nc )
 		# convert newoccurrence string to newfrequency integer
 		nf = int(nc)
 		# if newword is different from word
@@ -32,7 +33,7 @@ for line in f:
 			# also, for the first time, no need to print old word
 			# as it is None
 			if not first:
-				print ( "(", ow, ",", sum, ")", flush=True )
+				print ("(", ow, ",", sum, ")")
 			# then, update the old word and sum to latest
 			ow = nw
 			sum = nf
@@ -42,4 +43,4 @@ for line in f:
 	except:
 		continue
 
-print ( "(", ow, ",", sum, ")", flush=True )
+print ("(", ow, ",", sum, ")")

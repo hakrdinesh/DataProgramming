@@ -2,9 +2,9 @@
 # utf8 to ascii conversion
 import os
 import sys
-import PyPDF2
+# import PyPDF2
 
-debug		= True
+debug		= False
 testing 	= True
 
 
@@ -23,15 +23,18 @@ def GetPathNames(indir, suffix):
 			print("Root Directory", indir, file=sys.stderr)
 			print("Subdirectories", subdirs, file=sys.stderr)
 			print("Files         ", files, file=sys.stderr)
-		for d in subdirs:
-			print("Subdirectory  ", d, file=sys.stderr)
+			for d in subdirs:
+				print("Subdirectory  ", d, file=sys.stderr)
 		for f in files:
 			if f.lower().endswith(suffix):
-				print(suffix, "File     + ", f, file=sys.stderr)
+				if (debug):
+					print(suffix, "File     + ", f, file=sys.stderr)
 				pathname = dir + "/" + f
-				print(suffix, "Path     + ", pathname, file=sys.stderr)
+				if (debug):
+					print(suffix, "Path     + ", pathname, file=sys.stderr)
 				pathnames.append(pathname)
-	print("DEBUG:", suffix, "Pathnames", pathnames)
+	if (debug):
+		print("DEBUG:", suffix, "Pathnames", pathnames)
 	return pathnames
 
 if (testing):
@@ -43,8 +46,8 @@ array = GetPathNames(outpath, ".utf8")
 
 
 def GetOutputFileName(inputfilename):
+	outfilename = filename.replace(".utf8", ".txt")
 	if (debug):
-		outfilename = filename.replace(".utf8", ".txt")
 		print("Input File  is", filename)
 		print("Output File is", outfilename)
 	return outfilename
@@ -169,11 +172,10 @@ def TransformText(filename):
 
 		print(s, file=w)
 		print(" ", file=w)
-	print("... Done")
 
 
 for f in array:
 	filename = f
-	print(filename)
+	print("Processing", filename, file=sys.stderr)
 	TransformText(filename)
 exit(0)
