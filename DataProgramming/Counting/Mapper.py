@@ -403,7 +403,8 @@ for f in array:
 				print("Skipping file", filename, file=sys.stderr)
 			continue
 		# process only ssr.txt
-	print("Processing", filename, file=sys.stderr)
+	print("Mapping", filename, "to Hadoop Data Stream", file=sys.stderr)
+	sys.stderr.flush()
 	WordCount(filename)
 
 exit(0)

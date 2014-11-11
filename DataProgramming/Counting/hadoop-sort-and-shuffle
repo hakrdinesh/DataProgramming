@@ -1,2 +1,7 @@
 #!/bin/sh
+sleep 1
+echo "Sorting Data Stream">&2
+echo "Waiting for End of Data Stream">&2
 sort -k1,1
+echo "Data Stream Ended">&2
+echo "Sorted Data Stream">&2

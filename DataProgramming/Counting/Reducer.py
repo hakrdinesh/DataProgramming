@@ -37,6 +37,9 @@ for line in f:
 			if not first:
 				print ("(", ow, ",", sum, ")")
 			# then, update the old word and sum to latest
+			else:
+				print ("Reducing Stream", file=sys.stderr)
+				sys.stderr.flush()
 			ow = nw
 			sum = nf
 		else:
