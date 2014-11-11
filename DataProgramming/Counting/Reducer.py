@@ -1,6 +1,5 @@
-#!/C/Python27/python.exe
-#!/C/Python34/python.exe
 #!/usr/bin/env python
+# receive counts from hadoop and reduce it
 
 from __future__ import print_function
 

@@ -1,8 +1,7 @@
-#!/C/Python27/python.exe
-#!/C/Python34/python.exe
 #!/usr/bin/env python
+# transform special characters to plain text
+# i.e. utf8 to ascii conversion
 
-# utf8 to ascii conversion
 import os
 import sys
 # import PyPDF2

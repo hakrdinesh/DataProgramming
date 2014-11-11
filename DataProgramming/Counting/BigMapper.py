@@ -1,7 +1,6 @@
-#!/C/Python27/python.exe
-#!/C/Python34/python.exe
 #!/usr/bin/env python
 # word counter
+
 from __future__ import print_function
 
 import os
