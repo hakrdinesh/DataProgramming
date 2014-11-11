@@ -13,7 +13,15 @@ a. just the top 10
 $ ./Mapper.py | ./hadoop-sort-and-shuffle | ./Reducer.py | ./top10words
 
 b. all of them
+$ ./DataProgramming.sh
+
+or 
+
 $ ./Mapper.py | ./hadoop-sort-and-shuffle | ./Reducer.py 
 
-c. for all the books present in Books/
-$ ./BigMapper.py | ./hadoop-sort-and-shuffle | ./Reducer.py | ./top10words
+c. for all the books present in Books/ print top 10 words
+$ ./DataProgrammingBig.sh
+
+or
+
+$ ./MapperBig.py | ./hadoop-sort-and-shuffle | ./Reducer.py | ./top10words
