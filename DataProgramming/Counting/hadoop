@@ -1,0 +1,2 @@
+#!/bin/sh
+sort -k1,1

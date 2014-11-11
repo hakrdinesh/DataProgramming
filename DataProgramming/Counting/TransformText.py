@@ -1,4 +1,7 @@
+#!/C/Python27/python.exe
 #!/C/Python34/python.exe
+#!/usr/bin/env python
+
 # utf8 to ascii conversion
 import os
 import sys

@@ -1,4 +1,7 @@
 #!/C/Python27/python.exe
+#!/C/Python34/python.exe
+#!/usr/bin/env python
+
 from __future__ import print_function
 
 import sys
