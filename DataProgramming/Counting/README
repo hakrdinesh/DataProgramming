@@ -1,8 +1,27 @@
+On Windows, please setup the environment variable to include Python
+Notes:
+1. Left mouse button select - Windows "Start" Button
+2. Left mouse button select - > "Computer"
+3. Right mouse button select-   > "Properties"
+4. Left mouse button select -     > "Advanced System Properties" 
+5. Left mouse button select -       > "Environment Variables"
+6. Under the pane           -         > "System Variables"
+   Left mouse button select -           > "Path"
+   Edit selected environment variable Path
+   Append (add to the end) to Variable Value > C:\Python34
+   Select OK until all popups are gone
+7. Open a new Git Bash command shell from Start Menu
+8. Verify python can be run from Git Bash shell
+   $. python
+   >>> quit()
+
 Read and understand the code present.
 1. ExtractText.py - Extracts the text from a PDF file
 2. TransformText.py - Transforms the special characters to plain text
 3. WordCount - Counts the occurences of every word
 
+Generate PDF to UTF8 to Plaint Text
+$ ./BigData
 Display All Words and Their Counts:
 
 In an Alphabetically Sorted List
