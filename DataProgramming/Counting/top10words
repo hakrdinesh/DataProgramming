@@ -1,0 +1,2 @@
+#!/bin/sh
+sort -n -r -k4,4 | head -10
