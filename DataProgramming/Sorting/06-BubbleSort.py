@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-def bubble(ellamaanavargal):
+def bubble(a):
 	first = True
 	swapped = False
 

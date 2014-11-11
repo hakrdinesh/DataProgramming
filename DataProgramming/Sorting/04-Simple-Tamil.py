@@ -20,12 +20,6 @@ def bubble(ellamaanavargal):
 
 			aduthamaanavan = ellamaanavargal[ adutha (number) ] 
 
-
-			if (indhamaanavan < aduthamaanavan):
-		
-			if (indhamaanavan == aduthamaanavan):
-				print("\tOrder sariyaavum irukudhu")
-				
 			if (indhamaanavan > aduthamaanavan):
 				PositionMaathu = True
 
