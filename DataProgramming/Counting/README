@@ -1,9 +1,19 @@
-Notes:
+Read and understand the code present.
+1. ExtractText.py - Extracts the text from a PDF file
+2. TransformText.py - Transforms the special characters to plain text
+3. WordCount - Counts the occurences of every word
 
-Hadoop Mode Enabled
+Display All Words and Their Counts:
 
-Alphabetically Sorted List
-$ ./WordCount.py | sort -k1,1 | ./Reducer.py 
+In an Alphabetically Sorted List
+$ ./Mapper.py | ./hadoop-sort-and-shuffle | ./Reducer.py 
 
-Numerical Sorted List
-$ ./WordCount.py | sort -k1,1 | ./Reducer.py | sort -n -r -k4,4
+In a Numerical Sorted List
+a. just the top 10
+$ ./Mapper.py | ./hadoop-sort-and-shuffle | ./Reducer.py | ./top10words
+
+b. all of them
+$ ./Mapper.py | ./hadoop-sort-and-shuffle | ./Reducer.py 
+
+c. for all the books present in Books/
+$ ./BigMapper.py | ./hadoop-sort-and-shuffle | ./Reducer.py | ./top10words
