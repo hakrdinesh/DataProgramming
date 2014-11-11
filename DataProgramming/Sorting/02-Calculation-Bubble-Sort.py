@@ -7,7 +7,7 @@ def indha(number):
 def adutha(number):
 	return 1+number
 
-def bubble_calculation(ellamaanavargal):
+def computation(ellamaanavargal):
 	PositionMaathu = False
 	number = 0
 	for ovorumaanavan in ellamaanavargal[0:-1]:
@@ -58,7 +58,7 @@ students = [ 90, 14, 16, 99, 11, 19, 18 ]
 original = copy.copy(students)
 print(original)
 print(students)
-bubbleonce(students)
+computation(students)
 print(original)
 print(students)
 exit(0)
