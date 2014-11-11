@@ -21,7 +21,8 @@ Read and understand the code present.
 3. WordCount - Counts the occurences of every word
 
 Generate PDF to UTF8 to Plaint Text
-$ ./BigData
+$ ./DataGenerate.sh
+
 Display All Words and Their Counts:
 
 In an Alphabetically Sorted List
