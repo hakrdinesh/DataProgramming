@@ -1,0 +1,44 @@
+A Data Programming student should undestand the following papers 
+to go from Level(Grade) E participant to Level A+ Participant.
+
+1. Level E White Paper
+	Executive_Guide_to_Apache_and_Hadoop.pdf
+
+	A simple introduction to Apache and Hadoop from 
+	Courtesy: MapR Technologies
+
+2. Level D Grade White Paper
+	MapReduce_and_the_New_Software_Stack.pdf
+
+	A first dive into Map Reduce
+	Courtesy: Walmart Labs
+
+3. Level C Grade White Paper
+	hadoop-and-hdfs.pdf
+
+	An overview of Hadoop and HDFS
+	Courtesy: Cloudera Inc
+
+4. Level B Grade Research Paper
+	gfs-sosp2003.pdf
+
+	The original paper on Google File System GFS. 
+	Courtesy: Google
+
+5. Level B+ Grade Research Paper
+	mapreduce-osdi04.pdf
+
+	The original paper on Map Reduce
+	Courtesy: Google
+
+6. Level A Analytics
+	Clustering.pdf
+
+	Clustering Fundamentals
+	Courtesy: Walmart Labs
+
+7. Level A+ - Understanding Big Data Programming and Analytics Together
+	shafer_ispass10.pdf
+
+	Interaction with Computer Hardware
+	Courtesy: Rice University
