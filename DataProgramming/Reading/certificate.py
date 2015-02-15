@@ -9,7 +9,8 @@ debug = False
 allInOne = False
 nEmptyLines = 4
 
-file = open("certificate.txt")
+csv = "20141107-SRILA.csv"
+file = open("SRILA.txt")
 otext = ""
 for line in file:
 	otext = otext + line
@@ -30,7 +31,7 @@ def ExpandedDepartmentName(s):
 	# unknown department, return the same string
 	return s
 
-file = open("students.csv")
+file = open(csv)
 for line in file:
 	l = line.strip()
 	if (debug or True):
