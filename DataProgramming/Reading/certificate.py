@@ -9,8 +9,8 @@ debug = False
 allInOne = False
 nEmptyLines = 4
 
-csv = "20141107-SRILA.csv"
-file = open("SRILA.txt")
+csv = "20141109-RADIEN.csv"
+file = open("RADIEN.txt")
 otext = ""
 for line in file:
 	otext = otext + line
